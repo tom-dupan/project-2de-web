@@ -1,0 +1,14 @@
+.login{
+    border-style: solid;
+    border-color: lightslategray;
+    display: inline-block;
+    padding: 5%;
+    position: absolute;
+    margin-left: 37%;
+    margin-top: 10%;
+background-color:lightblue;
+
+}
+body{
+background-color: lightslategray;
+}
