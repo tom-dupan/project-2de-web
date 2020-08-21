@@ -30,12 +30,6 @@ const con = mysql.createConnection({
     multipleStatements: true
 });
 
-// Access to folders
-app.use('/css/', express.static(path.join(__dirname, '/../css/'))); // CSS
-app.use('/fonts/', express.static(path.join(__dirname, '/../fonts/'))); // Fonts
-app.use('/image/', express.static(path.join(__dirname, '/../image/'))); // Image
-app.use('/js/', express.static(path.join(__dirname, '/../js/'))); // JS
-
 // Pages on website
 app.get('/deliveries', (req, res) => {
     res.sendFile(path.join(__dirname + 'Deliveries.html'));
@@ -59,7 +53,7 @@ app.get('/login', (req, res) => {
 
     // Execute query
     // SELECT playerId, name FROM Player WHERE name LIKE '%a%';
-    con.query(`SELECT playerId, name FROM Gebruiker WHERE lower(name) LIKE ? LIMIT 0,5;`, ['%' + term + '%'], function (err, result, fields) {
+    con.query(`SELECT klantennummer, name FROM Gebruiker WHERE lower(name) LIKE ? LIMIT 0,5;`, ['%' + term + '%'], function (err, result, fields) {
         if (err) throw err;
 
         // Send data back
@@ -81,8 +75,8 @@ app.get("/getSortedPlayers", (req, res) => {
 
 // Function to register a user
 app.post('/registerUser', (req, res) => {
-    let username = req.body.username;
-    let password = req.body.password;
+    let username = req.body.naam;
+    let password = req.body.paswoord;
 
     if(username.trim() == '' || password.trim() == '') {
         res.send('invalid');
@@ -91,7 +85,7 @@ app.post('/registerUser', (req, res) => {
     }
 
     // Check if username exists
-    con.query('SELECT name FROM Gebruiker WHERE name=?;', [username], (err, result, fields) => {
+    con.query('SELECT name FROM Gebruiker WHERE name=?;', [naam], (err, result, fields) => {
         if(err) throw err;
         if (result.length > 0) { // Username already used
             res.send('user_exists');

@@ -24,3 +24,21 @@ a{
     padding-left: 5%; 
     border-style: solid;
 }
+.img{
+    width: 2%;
+}
+.contactphotos{
+padding-top: 10%;
+
+}
+
+body{
+    background-image: url(maxresdefault.jpg);
+}
+
+#t1{
+padding-top: 10%;
+}
+#t2{
+    width: 20%;
+}
